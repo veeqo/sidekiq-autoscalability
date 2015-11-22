@@ -1,4 +1,6 @@
 require 'active_support/core_ext/module'
+require "sidekiq_autoscalable/worker"
+require "sidekiq_autoscalable/worker/stats"
 require "sidekiq_autoscalable/errors"
 require "sidekiq_autoscalable/version"
 
