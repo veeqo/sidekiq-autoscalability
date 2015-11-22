@@ -42,13 +42,13 @@ module SidekiqAutoscalable
                            quota: quota)
     end
 
+    private
+
     def increase_workers_by
       threshold ?
         [count_of_workers_can_be_fired, threshold].min :
         count_of_workers_can_be_fired
     end
-
-    private
 
     def count_of_workers_can_be_fired
       [available_workers_quota, workers_cover_available_quota].min
