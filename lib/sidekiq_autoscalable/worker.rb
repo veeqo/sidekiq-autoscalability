@@ -19,7 +19,7 @@ module SidekiqAutoscalable
       available_workers_quota > 0 && workers_cover_available_quota > 0
     end
 
-    # NOTE: We can't decide which AWS worker to stop,
+    # NOTE: We can't decide which worker to stop,
     # that's why we're waiting until all jobs processed and queue becomes empty
     def reduce_workers_count?
       jobs_enqueued == 0 && jobs_processing == 0
