@@ -1,13 +1,14 @@
 module SidekiqAutoscalable
   class Worker
-    def initialize worker_name:, queues:, max_workers:, quota: 25, threshold: nil
+    def initialize worker_name:, queues:, max_workers:, min_workers: 0, quota: 25, threshold: nil
       @worker_name = worker_name
       @queues = queues
       @max_workers = max_workers
+      @min_workers = min_workers
       @quota = quota
       @threshold = threshold
     end
-    attr_reader :worker_name, :queues, :max_workers, :quota, :threshold
+    attr_reader :worker_name, :queues, :max_workers, :min_workers, :quota, :threshold
 
     delegate :available_workers_quota,
              :workers_cover_available_quota,
@@ -29,7 +30,7 @@ module SidekiqAutoscalable
       if increase_workers_count?
         workers_count + increase_workers_by
       elsif reduce_workers_count?
-        0
+        min_workers
       else
         workers_count
       end

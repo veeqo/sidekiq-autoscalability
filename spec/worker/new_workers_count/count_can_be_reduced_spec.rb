@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe SidekiqAutoscalable::Worker, '#new_workers_count' do
-  let(:worker) { described_class.new(worker_name: double,
-                                     queues: double,
-                                     max_workers: 10) }
   let(:workers_count) { 6 }
 
   subject { worker.new_workers_count }
@@ -14,8 +11,25 @@ describe SidekiqAutoscalable::Worker, '#new_workers_count' do
       allow(worker).to receive(:reduce_workers_count?).and_return(true)
     end
 
-    it 'returns 0' do
-      expect(subject).to eq(0)
+    context 'when min workers passed' do
+      let(:worker) { described_class.new(worker_name: double,
+                                     queues: double,
+                                     max_workers: 10,
+                                     min_workers: 1) }
+
+      it 'returns min workers' do
+        expect(subject).to eq(1)
+      end
+    end
+
+    context 'when min workers is not passed' do
+      let(:worker) { described_class.new(worker_name: double,
+                               queues: double,
+                               max_workers: 10) }
+
+      it 'returns 0' do
+        expect(subject).to eq(0)
+      end
     end
   end
 end
