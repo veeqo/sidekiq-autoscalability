@@ -1,8 +1,8 @@
 require 'active_support/core_ext/module'
-require "sidekiq_autoscalable/worker"
-require "sidekiq_autoscalable/worker/stats"
-require "sidekiq_autoscalable/errors"
-require "sidekiq_autoscalable/version"
+require "sidekiq-autoscalable/worker"
+require "sidekiq-autoscalable/worker/stats"
+require "sidekiq-autoscalable/errors"
+require "sidekiq-autoscalable/version"
 
 module SidekiqAutoscalable
   def self.redis
