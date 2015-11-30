@@ -36,6 +36,10 @@ module SidekiqAutoscalable
       end
     end
 
+    def need_to_update_workers_count?
+      new_workers_count != workers_count
+    end
+
     def stats
       @stats ||= Stats.new(worker_name: worker_name,
                            queues: queues,
