@@ -40,6 +40,10 @@ module SidekiqAutoscalable
       @workers_cover_available_quota ||= (jobs_enqueued / quota.to_f).ceil
     end
 
+    def workers_cover_current_jobs
+      @workers_cover_current_jobs ||= ((jobs_enqueued + jobs_processing) / quota.to_f).ceil
+    end
+
     def to_h
       [ :jobs_enqueued,
         :jobs_processing,

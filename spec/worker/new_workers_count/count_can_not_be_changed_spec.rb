@@ -11,7 +11,8 @@ describe SidekiqAutoscalable::Worker, '#new_workers_count' do
   describe 'workers count can not be reduced or increased' do
     before do
       allow(worker).to receive(:increase_workers_count?).and_return(false)
-      allow(worker).to receive(:reduce_workers_count?).and_return(false)
+      allow(worker).to receive(:reduce_workers_count_to_min?).and_return(false)
+      allow(worker).to receive(:reduce_workers_count_to_reasonable?).and_return(false)
       allow_any_instance_of(SidekiqAutoscalable::Worker::Stats).to receive(:workers_count).and_return(6)
     end
 

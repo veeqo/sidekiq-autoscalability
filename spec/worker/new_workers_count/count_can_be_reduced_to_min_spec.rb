@@ -5,10 +5,10 @@ describe SidekiqAutoscalable::Worker, '#new_workers_count' do
 
   subject { worker.new_workers_count }
 
-  describe 'workers count can be reduced' do
+  describe 'workers count can be reduced to min' do
     before do
       allow(worker).to receive(:increase_workers_count?).and_return(false)
-      allow(worker).to receive(:reduce_workers_count?).and_return(true)
+      allow(worker).to receive(:reduce_workers_count_to_min?).and_return(true)
     end
 
     context 'when min workers passed' do
