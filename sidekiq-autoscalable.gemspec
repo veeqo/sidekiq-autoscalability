@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Collects data of sidekiq worker for autoscaling.}
   spec.description   = %q{Collects data of sidekiq worker for autoscaling. Helps to find out whether necessary to increase or reduce number of workers and resulted count of workers according to provided rules.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/veeqo/sidekiq-autoscalability"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
